@@ -10,8 +10,6 @@ class Square(Shape):
         super().__init__(center)
         self._side = side
 
-    # TODO: Task 4 - Implement the scale method
-
     def draw(self, painter: QPainter) -> None:
         rect = QRectF(
             self._center.x - (self._side / 2.0),
@@ -22,3 +20,7 @@ class Square(Shape):
         painter.drawRect(rect)
 
         painter.drawText(self._center.x, self._center.y, str(self._id))
+
+    # TODO: Task 4 - Implement the scale method
+    def scale(self, scalingFactor: float) -> None:
+        self._side *= scalingFactor

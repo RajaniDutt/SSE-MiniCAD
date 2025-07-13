@@ -262,6 +262,48 @@ def translate(shapes: list[Shape], command_stack: CommandStack) -> None:
         command = TranslateShapeCommand(shape, delta_x, delta_y)
         command_stack.execute(command)
 
+class ScaleShapeDialog(QDialog):
+    def __init__(self, numberOfShapes: int, parent: Optional[QWidget] = None) -> None:
+        super().__init__(parent)
+        self.shapeNumber = QSpinBox(self)
+        self.shapeNumber.setMaximum(numberOfShapes - 1)
+        self.shapeNumber.setMinimum(0)
+
+        max_value = 1000
+
+        self.scaling_factor = QDoubleSpinBox(self)
+        self.scaling_factor.setMaximum(max_value)
+        self.scaling_factor.setMinimum(0)
+
+        buttonBox = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel,
+            self,
+        )
+
+        layout = QFormLayout(self)
+        layout.addRow("shape number", self.shapeNumber)
+        layout.addRow("scaling factor", self.scaling_factor)
+        layout.addWidget(buttonBox)
+
+        buttonBox.accepted.connect(self.accept)
+        buttonBox.rejected.connect(self.reject)
+
+    def get_inputs(self) -> tuple[int, float]:
+        return (self.shapeNumber.value(), self.scaling_factor.value())
+
+def scale(shapes: list[Shape], command_stack: CommandStack) -> None:
+    if len(shapes) == 0:
+        return
+
+    dialog = ScaleShapeDialog(shapes.__len__())
+    if dialog.exec():
+        number = dialog.get_inputs()[0]
+        scalingFactor = dialog.get_inputs()[1]
+
+        shape = shapes[number]
+        command = ScaleShapeCommand(shape, scalingFactor)
+        command_stack.execute(command)
+
 
 # TODO: Task 4 - Implement the ScaleShapeDialog class and the scale function
 
@@ -311,6 +353,7 @@ class ActionFactory:
         dialogs["Triangle"] = create_triangle
         dialogs["Square"] = create_square
         dialogs["Translate"] = translate
+        dialogs["Scale"] = scale
         dialogs["Clear"] = clear
         # TODO: Task 2 & 4: add the rectangle and scale dialogs to the dictionary of this factory class
         dialogs["Rectangle"] = create_rectangle

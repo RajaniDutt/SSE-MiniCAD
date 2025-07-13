@@ -15,8 +15,10 @@ class Shape(ABC):
     @abstractmethod
     def draw(self, painter: QPainter) -> None:
         raise NotImplementedError
-
-    # TODO: Task 4 - Implement the scale method
-
+    
     def translate(self, dx: int, dy: int) -> None:
         self._center.translate(dx, dy)
+
+    # TODO: Task 4 - Implement the scale method
+    def scale(self, scalingFactor: float) -> None:
+        pass

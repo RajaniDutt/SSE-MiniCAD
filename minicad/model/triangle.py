@@ -12,8 +12,11 @@ class Triangle(Shape):
         super().__init__(center)
         self._side = side
 
-    # TODO: Task 4 - Implement the scale method
 
     def draw(self, painter: QPainter) -> None:
         # TODO: Task 3 - Implement the drawing mechanism for a triangle
         pass
+
+    # TODO: Task 4 - Implement the scale method
+    def scale(self, scalingFactor: float) -> None:
+        self._side *= scalingFactor

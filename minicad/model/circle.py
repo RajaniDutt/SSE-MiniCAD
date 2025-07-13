@@ -9,8 +9,6 @@ class Circle(Shape):
         super().__init__(center)
         self._radius = radius
 
-    # TODO: Task 4 - Implement the scale method
-
     def draw(self, painter: QPainter) -> None:
         topLeftX = int(self._center.x - self._radius)
         topLeftY = int(self._center.y - self._radius)
@@ -19,3 +17,7 @@ class Circle(Shape):
         )
 
         painter.drawText(self._center.x, self._center.y, str(self._id))
+
+    # TODO: Task 4 - Implement the scale method
+    def scale(self, scalingFactor: float) -> None:
+        self._radius *= scalingFactor
