@@ -123,17 +123,17 @@ class InputRectangleDialog(QDialog):
      def __init__(self, parent: Optional[QWidget] = None) -> None:
         super().__init__(parent)
 
-        self.x_feild = QLineEdit(self)
-        self.x_feild.setValidation(QIntValidator(0,1000, self))
+        self.x_field = QLineEdit(self)
+        self.x_field.setValidator(QIntValidator(0,1000, self))
 
-        self.y_feild = QLineEdit(self)
-        self.y_feild.setValidation(QIntValidator(0,1000, self))
+        self.y_field = QLineEdit(self)
+        self.y_field.setValidator(QIntValidator(0,1000, self))
 
-        self.width_feild = QLineEdit(self)
-        self.width_feild.setValidation(QIntValidator(0,1000, self))
+        self.width_field = QLineEdit(self)
+        self.width_field.setValidator(QIntValidator(0,1000, self))
 
-        self.height_feild = QLineEdit(self)
-        self.height_feild.setValidation(QIntValidator(0,1000, self))
+        self.height_field = QLineEdit(self)
+        self.height_field.setValidator(QIntValidator(0,1000, self))
 
         buttonBox = QDialogButtonBox(
             QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel,
@@ -151,8 +151,8 @@ class InputRectangleDialog(QDialog):
         buttonBox.rejected.connect(self.reject)
 
      def get_inputs(self) -> tuple[int, int, int, int]:
-         x = int(self.x_feild.test())
-         y = int(self.y_feild.test())
+         x = int(self.x_field.test())
+         y = int(self.y_field.test())
          width = int(self.width_field.text()) # type: ignore
          height = int(self.height_field.text())
          return x, y, width, height
