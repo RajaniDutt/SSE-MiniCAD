@@ -141,10 +141,10 @@ class InputRectangleDialog(QDialog):
         )
 
         layout = QFormLayout(self)
-        layout.addRow ("X", self.x_feild)
-        layout.addRow ("y", self.y_feild)
-        layout.addRow ("Width", self.width_feild)
-        layout.addRow ("Height", self.height_feild)
+        layout.addRow ("X", self.x_field)
+        layout.addRow ("y", self.y_field)
+        layout.addRow ("Width", self.width_field)
+        layout.addRow ("Height", self.height_field)
         layout.addWidget(buttonBox)
 
         buttonBox.accepted.connect(self.accept)
