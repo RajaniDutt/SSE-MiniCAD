@@ -9,7 +9,7 @@ class CommandStack:
     def execute(self, command: Command) -> None:
         # TODO: Task 5 - Implement the command stack
         command.execute()
-        self.undostack.append(command)
+        self.undoStack.append(command)
         self.redoStack.clear()
 
     def undo(self) -> None:
@@ -22,8 +22,8 @@ class CommandStack:
 
     def redo(self) -> None:
         # TODO: Task 5 - Implement the command stack
-       if not self.redoStack:
-            return              
+        if not self.redoStack:
+            return
         command = self.redoStack.pop()
         command.execute()       
         self.undoStack.append(command) 
