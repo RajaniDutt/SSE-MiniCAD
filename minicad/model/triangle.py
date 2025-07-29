@@ -15,6 +15,18 @@ class Triangle(Shape):
 
     def draw(self, painter: QPainter) -> None:
         # TODO: Task 3 - Implement the drawing mechanism for a triangle
+        height = (self._side * math.sqrt(3)) / 2
+
+        p1 = QPoint(self._center.x, self._center.y - (2 / 3) * height)  # Top vertex
+        p2 = QPoint(self._center.x - self._side / 2, self._center.y + (1 / 3) * height)  # Bottom-left
+        p3 = QPoint(self._center.x + self._side / 2, self._center.y + (1 / 3) * height)  # Bottom-right
+
+
+        triangle = QPoint([p1, p2, p3])
+        painter.drawPolygon(triangle)
+
+
+        painter.drawText(self._center.x, self._center.y, str(self._id))
         pass
 
     # TODO: Task 4 - Implement the scale method
