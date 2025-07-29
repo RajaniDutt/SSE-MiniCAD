@@ -151,8 +151,8 @@ class InputRectangleDialog(QDialog):
         buttonBox.rejected.connect(self.reject)
 
      def get_inputs(self) -> tuple[int, int, int, int]:
-         x = int(self.x_field.test())
-         y = int(self.y_field.test())
+         x = int(self.x_field.text())
+         y = int(self.y_field.text())
          width = int(self.width_field.text()) # type: ignore
          height = int(self.height_field.text())
          return x, y, width, height
